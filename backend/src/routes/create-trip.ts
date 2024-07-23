@@ -62,14 +62,11 @@ export async function createTrip(app: FastifyInstance){
     const email = await getMailClient()
 
     const message = await email.sendMail({
-      from: {
-        name: 'Equipe planner',
-        address: 'contato@planner.com.br',
-      },
       to: {
         name: owner_name,
         address: owner_email
       },
+      from:"brunomatossilvait@gmail.com",
       subject: `Confirme sua viagem para ${destination} em ${formattedStartDate}`,
       html: `
       <html lang="en">
@@ -139,7 +136,7 @@ export async function createTrip(app: FastifyInstance){
                     <p>Caso você não saiba do que se trata esse e-mail, apenas ignore esse e-mail.</p>
                 </div>
                 <div class="footer">
-                    <p>&copy; 2024 Planner. Todos os direitos reservados.</p>
+                    <p>&copy; 2024 My TravelPlanner. Todos os direitos reservados.</p>
                 </div>
             </div>
         </body>

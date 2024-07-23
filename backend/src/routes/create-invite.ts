@@ -47,11 +47,8 @@ export async function createInvite(app: FastifyInstance){
         const confirmationLink = `${env.API_BASE_URL}/participants/${participant.id}/confirm`
 
         const message = await mail.sendMail({
-          from: {
-            name: 'Equipe planner',
-            address: 'contato@planner.com.br',
-          },
           to: participant.email,
+          from:"brunomatossilvait@gmail.com",
           subject: `Confirme sua presença na viagem para ${trip.destination} em ${formattedStartDate}`,
           html: `
           <html lang="en">
@@ -121,7 +118,7 @@ export async function createInvite(app: FastifyInstance){
                         <p>Caso você não saiba do que se trata esse e-mail, apenas ignore esse e-mail.</p>
                     </div>
                     <div class="footer">
-                        <p>&copy; 2024 Planner. Todos os direitos reservados.</p>
+                        <p>&copy; 2024 My TravelPlanner. Todos os direitos reservados.</p>
                     </div>
                 </div>
             </body>

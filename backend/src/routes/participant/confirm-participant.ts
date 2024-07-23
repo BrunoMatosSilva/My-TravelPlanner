@@ -2,9 +2,9 @@ import type { FastifyInstance } from "fastify"
 import type { ZodTypeProvider } from "fastify-type-provider-zod"
 import "dayjs/locale/pt-br"
 import { z } from "zod"
-import { prisma } from "../lib/prisma"
-import { ClientError } from "../errors/client-error"
-import { env } from "../../env"
+import { prisma } from "../../lib/prisma"
+import { ClientError } from "../../errors/client-error"
+import { env } from "../../../env"
 
 export async function confirmParticipant(app: FastifyInstance){
   app.withTypeProvider<ZodTypeProvider>().get('/participants/:participantId/confirm',{

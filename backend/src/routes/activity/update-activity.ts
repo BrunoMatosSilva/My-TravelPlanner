@@ -1,15 +1,16 @@
 import type { FastifyInstance } from "fastify"
 import type { ZodTypeProvider } from "fastify-type-provider-zod"
 import { z } from "zod"
-import { dayjs } from "../lib/dayjs"
-import { prisma } from "../lib/prisma"
-import { ClientError } from "../errors/client-error"
+import { dayjs } from "../../lib/dayjs"
+import { prisma } from "../../lib/prisma"
+import { ClientError } from "../../errors/client-error"
 
-export async function createActivity(app: FastifyInstance){
-  app.withTypeProvider<ZodTypeProvider>().post('/trips/:tripId/activities',{
+export async function updateActivity(app: FastifyInstance){
+  app.withTypeProvider<ZodTypeProvider>().put('/trips/:tripId/activities/:activityId',{
     schema: {
       params: z.object({
-        tripId: z.string().uuid()
+        tripId: z.string().uuid(),
+        activityId: z.string().uuid()
       }),
       body: z.object({
         title: z.string().min(4),
@@ -17,7 +18,7 @@ export async function createActivity(app: FastifyInstance){
       })
     }
   }, async (request) => {
-    const { tripId } = request.params
+    const { tripId, activityId } = request.params
     const { title, occurs_at } = request.body
 
     const trip = await prisma.trip.findUnique({
@@ -38,7 +39,8 @@ export async function createActivity(app: FastifyInstance){
       throw new ClientError('Invalid activity date.')
     }
 
-    const activity = await prisma.activity.create({
+    const activity = await prisma.activity.update({
+      where: { id: activityId },
       data: {
         title,
         occurs_at,

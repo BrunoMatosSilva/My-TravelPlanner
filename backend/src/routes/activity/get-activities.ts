@@ -1,9 +1,9 @@
 import type { FastifyInstance } from "fastify"
 import type { ZodTypeProvider } from "fastify-type-provider-zod"
 import { z } from "zod"
-import { prisma } from "../lib/prisma"
+import { prisma } from "../../lib/prisma"
 import dayjs from "dayjs"
-import { ClientError } from "../errors/client-error"
+import { ClientError } from "../../errors/client-error"
 
 export async function getActivities(app: FastifyInstance){
   app.withTypeProvider<ZodTypeProvider>().get('/trips/:tripId/activities',{

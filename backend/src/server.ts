@@ -19,6 +19,9 @@ import { deleteParticipant } from "./routes/delete-participant";
 import { deleteActivity } from "./routes/delete-activity";
 import { deleteTrip } from "./routes/delete-trip";
 import { deleteLink } from "./routes/delete-link";
+import { updateLink } from "./routes/update-link";
+import { updateActivity } from "./routes/update-activity";
+import { getActivityDetails } from "./routes/get-activity-details";
 
 const app = fastify()
 
@@ -47,6 +50,9 @@ app.register(deleteParticipant)
 app.register(deleteActivity)
 app.register(deleteTrip)
 app.register(deleteLink)
+app.register(updateLink)
+app.register(updateActivity)
+app.register(getActivityDetails)
 
 app.listen({ port: env.PORT }).then(() => {
   console.log("Server running 🚀!")

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
 import { format } from "date-fns";
 import "react-day-picker/dist/style.css"
+import { ptBR } from "date-fns/locale";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean,
@@ -33,7 +34,7 @@ export function DestinationAndDateStep({
   }
 
   const displayedDate = eventStartAndEndDate && eventStartAndEndDate.from && eventStartAndEndDate.to
-  ? format(eventStartAndEndDate.from, "d' de 'LLL").concat(' até ').concat(format(eventStartAndEndDate.to, "d' de 'LLL")) 
+  ? format(eventStartAndEndDate.from, "d' de 'LLL", {locale: ptBR}).concat(' até ').concat(format(eventStartAndEndDate.to, "d' de 'LLL", {locale: ptBR})) 
   : null
 
   return(
